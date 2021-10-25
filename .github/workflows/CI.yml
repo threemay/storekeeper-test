@@ -40,6 +40,10 @@ jobs:
     
     - run: yarn 
 
+    - run: yarn dev
+
+    - run: curl localhost:8080/health
+
     # - run: npm test
     #   env:
     #     CI: true
