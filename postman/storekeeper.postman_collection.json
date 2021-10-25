@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "19ae7d1f-06e9-43af-b1b5-c8bfca9e8a4e",
+		"name": "storekeeper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "branch",
+			"item": [
+				{
+					"name": "Get all branches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/branches",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"branches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new branch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"branch full name\",\n    \"name\": \"BFN\",\n    \"address\": {\n        \"address\": \"111 fake street\",\n        \"suburb\": \"suburb\",\n        \"postcode\": 4000,\n        \"city\": \"Brisbane\",\n        \"country\": \"Australia\"\n    },\n    \"contactNumber\": \"0412345678\",\n    \"manager\": \"staff001\",\n    \"description\": \"this is a fake branch\",\n    \"logo\": \"http://example.com\",\n    \"timezone\": \"GMT-200\",\n    \"comment\": \"no comment\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/branches",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"branches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get branch by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/branches/6149d5073a3ca3ca8488406b",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"branches",
+								"6149d5073a3ca3ca8488406b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update branch by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"branch full name\",\n    \"contactNumber\": \"0412345678\",\n    \"description\": \"new descp\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/branches/6148837a7b479b2738543e38",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"branches",
+								"6148837a7b479b2738543e38"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete branch by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/branches/6148837a7b479b2738543e38",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"branches",
+								"6148837a7b479b2738543e38"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
