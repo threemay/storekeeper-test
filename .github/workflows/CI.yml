@@ -34,7 +34,7 @@ jobs:
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
         # default port 27017
-         mongodb-port: 27017
+        mongodb-port: 27017
 
     - run: mongorestore --version
     
