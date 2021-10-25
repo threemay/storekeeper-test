@@ -36,9 +36,9 @@ jobs:
         # default port 27017
         mongodb-port: 27017
 
-    - run: mongorestore --version
+    - run: mongorestore -d storekeeper -c users ./dbDump/users.bson
     
-    # - run: npm install
+    - run: yarn 
 
     # - run: npm test
     #   env:
