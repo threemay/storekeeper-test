@@ -22,7 +22,7 @@ jobs:
       DB_URL: mongodb://localhost:27017/storekeeper
       DATABASE: storekeeper
       COLLECTION: users
-      # PATH: ./dbDump/users.bson
+      bsonPATH: ./dbDump/users.bson
 
     strategy:
       matrix:
@@ -40,11 +40,11 @@ jobs:
     #   with:
     #     node-version: ${{ matrix.node-version }}
     
-    # - name: ----- create .env -----
-    #   run: touch .env && echo NODE_ENV=${{ env.NODE_ENV }} >> .env && \
-    #        echo PORT=${{ env.PORT }} >> .env && \
-    #        echo NODE_ENV=${{ env.DB_URL }} >> .env && \
-    #        cat .env
+    - name: ----- create .env -----
+      run: touch .env && echo NODE_ENV=${{ env.NODE_ENV }} >> .env && \
+           echo PORT=${{ env.PORT }} >> .env && \
+           echo NODE_ENV=${{ env.DB_URL }} >> .env && \
+           cat .env
 
     # - name: ----- Start MongoDB -----
     #   uses: supercharge/mongodb-github-action@1.6.0
