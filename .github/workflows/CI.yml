@@ -41,9 +41,9 @@ jobs:
     #     node-version: ${{ matrix.node-version }}
     
     - name: ----- create .env -----
-      run: touch .env && echo NODE_ENV=${{ env.NODE_ENV }} >> .env && \
-           echo PORT=${{ env.PORT }} >> .env && \
-           echo NODE_ENV=${{ env.DB_URL }} >> .env && \
+      run: touch .env && echo NODE_ENV=${{ env.NODE_ENV }} >> .env && 
+           echo PORT=${{ env.PORT }} >> .env && 
+           echo NODE_ENV=${{ env.DB_URL }} >> .env && 
            cat .env
 
     # - name: ----- Start MongoDB -----
