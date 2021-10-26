@@ -13,9 +13,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # env:
-    #   DAY_OF_WEEK: Mon
-
     env:
       NODE_ENV: development
       PORT: 8080
@@ -35,32 +32,29 @@ jobs:
     - name: ----- Git checkout -----
       uses: actions/checkout@v2
 
-    # - name: ----- Use Node.js ${{ matrix.node-version }} -----
-    #   uses: actions/setup-node@v1
-    #   with:
-    #     node-version: ${{ matrix.node-version }}
+    - name: ----- Use Node.js ${{ matrix.node-version }} -----
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
     
-    - name: ----- create .env -----
-      run: touch .env && echo NODE_ENV=${{ env.NODE_ENV }} >> .env && 
+    - name: ----- Create .env -----
+      run: touch .env && echo NODE_ENV=${{ env.NODE_ENV }} > .env && 
            echo PORT=${{ env.PORT }} >> .env && 
            echo NODE_ENV=${{ env.DB_URL }} >> .env && 
            cat .env
 
-    # - name: ----- Start MongoDB -----
-    #   uses: supercharge/mongodb-github-action@1.6.0
-    #   with:
-    #     mongodb-version: ${{ matrix.mongodb-version }}
-    #     # default port 27017
-    #     mongodb-port: 27017
+    - name: ----- Start MongoDB -----
+      uses: supercharge/mongodb-github-action@1.6.0
+      with:
+        mongodb-version: ${{ matrix.mongodb-version }}
+        # default port 27017
+        mongodb-port: 27017
 
-    # - run: mongorestore -d storekeeper -c users ./dbDump/users.bson
+    - name: ----- mongorestore -----
+      run: mongorestore -d {{ env.DATABASE }} -c {{ env.COLLECTION }} {{ env.bsonPATH }} 
     
-    # - run: yarn 
+    - run: yarn 
 
-    # - run: yarn dev
+    - run: yarn build
 
-    # - run: curl localhost:8080/health
-
-    # - run: npm test
-    #   env:
-    #     CI: true
+    - run: yarn test
