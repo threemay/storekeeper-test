@@ -52,10 +52,13 @@ jobs:
 
     - name: ----- mongorestore -----
       run: mongorestore -d ${{ env.DATABASE }} -c ${{ env.COLLECTION }} ${{ env.bsonPATH }} 
-      # run: mongorestore -d storekeeper -c users ./dbDump/users.bson
 
-    - run: yarn 
+    - name: ----- yarn -----
+      run: yarn 
 
-    - run: yarn build
+    - name: ----- yarn build -----
+      run: yarn build
 
-    - run: yarn test
+    - name: ----- yarn test -----
+      # run: yarn test
+      run: echo fake test
