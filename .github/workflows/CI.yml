@@ -9,10 +9,17 @@ on:
     branches: 
       - main 
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: development
+      PORT: 8080
+      DB_URL: mongodb://localhost:27017/storekeeper
+      DATABASE: storekeeper
+      COLLECTION: users
+      PATH: ./dbDump/users.bson
+
     strategy:
       matrix:
         # node-version: [12.x, 14.x]
@@ -24,25 +31,31 @@ jobs:
     - name: ----- Git checkout -----
       uses: actions/checkout@v2
 
-    - name: ----- Use Node.js ${{ matrix.node-version }} -----
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: ----- Start MongoDB -----
-      uses: supercharge/mongodb-github-action@1.6.0
-      with:
-        mongodb-version: ${{ matrix.mongodb-version }}
-        # default port 27017
-        mongodb-port: 27017
-
-    - run: mongorestore -d storekeeper -c users ./dbDump/users.bson
+    # - name: ----- Use Node.js ${{ matrix.node-version }} -----
+    #   uses: actions/setup-node@v1
+    #   with:
+    #     node-version: ${{ matrix.node-version }}
     
-    - run: yarn 
+    - name: ----- initial .env -----
+      run: touch .env && echo NODE_ENV=${{ env.NODE_ENV }} >> .env && \
+           echo PORT=${{ env.PORT }} >> .env && \
+           echo NODE_ENV=${{ env.DB_URL }} >> .env && \
+           cat .env
 
-    - run: yarn dev
+    # - name: ----- Start MongoDB -----
+    #   uses: supercharge/mongodb-github-action@1.6.0
+    #   with:
+    #     mongodb-version: ${{ matrix.mongodb-version }}
+    #     # default port 27017
+    #     mongodb-port: 27017
 
-    - run: curl localhost:8080/health
+    # - run: mongorestore -d storekeeper -c users ./dbDump/users.bson
+    
+    # - run: yarn 
+
+    # - run: yarn dev
+
+    # - run: curl localhost:8080/health
 
     # - run: npm test
     #   env:
